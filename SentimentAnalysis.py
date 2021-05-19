@@ -19,7 +19,7 @@ df['cleaned_review'] = df['cleaned_review'].str.replace('[^\w\s]', '')
 #remove stop words, and common words "food" "place" "japanese" etc
 stop_words = stopwords.words("english")
 df['cleaned_review'] = df['cleaned_review'].apply(lambda x: " ".join(x for x in x.split() if x not in stop_words))
-other_stop_words = ['place','food']
+other_stop_words = ['place','food', 'chicken']
 df['cleaned_review'] = df['cleaned_review'].apply(lambda x: " ".join(x for x in x.split() if x not in other_stop_words))
 #lemmatize all words
 df['cleaned_review'] = df['cleaned_review'].apply(lambda x: " ".join([Word(word).lemmatize() for word in x.split()]))
@@ -111,7 +111,7 @@ print(f'Average positive sentiment: {avg_pos} \nAverage negative sentiment: {avg
 #Generate a word cloud based on the negative and positive words in the reviews
 word_list = ' '.join([i for i in df['cleaned_review']]).split()
 wordcloud_neg = WordCloud(background_color='black', max_words=200)
-wordcloud_pos = WordCloud(background_color='black', max_words=200)
+wordcloud_pos = WordCloud(background_color='white', max_words=200)
 
 wc_neg =[]
 wc_pos = []
